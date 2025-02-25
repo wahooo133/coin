@@ -26,9 +26,11 @@ nav {
 }
 
 .coin {
-  height: 40px;
+  display: flex;
+  transform: scale(1.7,1.7);
+  height: 50px;
   width: auto;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .container span {
@@ -155,4 +157,25 @@ nav {
   text-shadow: 2x 2x 2x black,
   5px 5px 70px black;
   transform: scale(10,10.10) translate(-50%, 10%);
+}
+
+.armin {
+  transform: scale(1, 1);
+  position: absolute;
+  bottom: 50px;
+  left: 350px;
+}
+
+.timraz {
+  transform: scale(1, 1);
+  position: absolute;
+  bottom: 50px;
+  right: 390px;
+}
+
+.coin-center {
+  transform: scale(2, 2);
+  position: absolute;
+  top: 60%;
+  left: 50%;
 }
