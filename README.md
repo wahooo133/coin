@@ -1,0 +1,2 @@
+# coin
+mining
