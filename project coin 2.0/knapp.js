@@ -1,63 +1,121 @@
-let coins = 0;
-        let isMining = false;
-        let cooldown = false;
-        let cooldownTime = 0;
+let isMining = false;
 
-        function updateStatus(message, type = 'info') {
-            const status = document.getElementById('status');
-            status.className = `status-box ${type}`;
-            status.innerHTML = `Status: ${message}`;
+// ✅ Connect to SignalR
+const connection = new signalR.HubConnectionBuilder()
+    .withUrl("http://localhost:5000/miningHub", {
+    skipNegotiation: true,
+    transport: signalR.HttpTransportType.WebSockets
+    })
+    .configureLogging(signalR.LogLevel.Information)
+    .build();
+
+connection.start().then(() => {
+    console.log("Connected to mining server...");
+}).catch(err => console.error(err));
+
+// ✅ Show live mining progress
+connection.on("UpdateMiningStatus", (message) => {
+    updateStatus(message, 'info');
+});
+
+// ✅ Show mining result when finished
+connection.on("MiningCanceled", (message) => {
+    updateStatus(message, 'warning');
+    isMining = false; // ✅ Reset state when canceled
+});
+
+// ✅ Show mining result when finished
+connection.on("MiningCompleted", (message) => {
+    updateStatus(message, 'success');
+});
+
+async function cancelMining()
+{
+    try {
+        let cancelResponse = await fetch("http://localhost:5000/cancelMining", { method: "POST" });
+
+        if (cancelResponse.ok) {
+            let cancelData = await cancelResponse.json();
+            updateStatus(cancelData.message, 'info');
+        } else {
+            let errorData = await cancelResponse.json();
+            updateStatus(errorData.error, 'error');
         }
+    } catch (error) {
+        console.error("Error canceling mining:", error);
+        updateStatus("Error canceling mining.", 'error');
+    }
+}
 
-        function startMining() {
-            if (isMining || cooldown) return;
 
-            const blocksInput = document.getElementById('blocks');
-            const blocks = parseInt(blocksInput.value);
+async function startMining()
+{
+    if (isMining) {
+        updateStatus("Stopping current mining session...", 'warning');
+        
+        // ✅ Send a request to cancel the current mining session
+        try {
+            let cancelResponse = await fetch("http://localhost:5000/cancelMining", { method: "POST" });
 
-            if (!blocks || blocks < 1) {
-                updateStatus('Ogiltigt antal blocks! Ange ett positivt tal', 'error');
-                return;
+            if (cancelResponse.ok) {
+                let cancelData = await cancelResponse.json();
+                updateStatus(cancelData.message, 'info');
+            } else {
+                let errorData = await cancelResponse.json();
+                updateStatus(errorData.error, 'error');
             }
-
-            isMining = true;
-            updateStatus(`Startar mining av ${blocks} blocks...`, 'info');
-            document.getElementById('mineButton').disabled = true;
-
-            // Simulera mining-process
-            setTimeout(() => {
-                const success = Math.random() > 0.2; // 80% chans att lyckas
-                const minedCoins = success ? blocks * 0.1 : 0;
-                
-                coins += minedCoins;
-                document.getElementById('coins').textContent = coins.toFixed(2);
-                
-                if (success) {
-                    updateStatus(`Lyckades mina ${blocks} blocks! Fick ${minedCoins.toFixed(2)} coins`, 'success');
-                } else {
-                    updateStatus('Mining misslyckades! Försök igen', 'error');
-                }
-
-                isMining = false;
-                startCooldown(15); // 15 sekunders cooldown
-            }, 2000);
+        } catch (error) {
+            console.error("Error canceling mining:", error);
+            updateStatus("Error canceling mining.", 'error');
         }
 
-        function startCooldown(seconds) {
-            cooldown = true;
-            cooldownTime = seconds;
-            const timerElement = document.getElementById('timer');
-            const button = document.getElementById('mineButton');
+        isMining = false;
+        return;
+    }
 
-            const interval = setInterval(() => {
-                cooldownTime--;
-                timerElement.textContent = `${cooldownTime}s`;
-                
-                if (cooldownTime <= 0) {
-                    clearInterval(interval);
-                    timerElement.textContent = 'Redo';
-                    button.disabled = false;
-                    cooldown = false;
-                }
-            }, 1000);
-        }
+
+    const blocksInput = document.getElementById('blocks');
+    const blocksStr = blocksInput.value.trim(); // Get input as a string
+
+    if (!blocksStr || !/^\d+$/.test(blocksStr)) {
+        updateStatus("Number of blocks cannot be none or is an invalid input! Field can ONLY contain positive digits!", 'error');
+        return;
+    }
+
+    const blocks = BigInt(blocksStr);
+
+    if (blocks == 0) {
+        updateStatus("Number of blocks cannot be 0!", 'error');
+        return;
+    } 
+    else if (blocks > 1000000000){
+        updateStatus("Number of blocks cannot be higher than 1,000,000,000!", 'error')
+        return;
+    }
+        
+    try {
+        updateStatus("Mining started...", 'info');
+        isMining = true;
+        // Send `blocks` as a query parameter
+        let response = await fetch("http://localhost:5000/startMining", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ blocks: blocks.toString() }) // Send BigInt as string
+        });
+        let data = await response.json(); // Parse JSON response
+
+        console.log("Mining Result:", data.textResult);
+        updateStatus(data.textResult, 'info');
+        isMining = false;
+    } catch (error) {
+        console.error("Error fetching mining result:", error);
+        updateStatus("Error connecting to mining service.", 'error');
+        isMining = false;
+    }
+}
+
+function updateStatus(message, type = 'info') {
+    const status = document.getElementById('status');
+    status.className = `status-box ${type}`;
+    status.innerHTML = `Status: ${message}`;
+}
