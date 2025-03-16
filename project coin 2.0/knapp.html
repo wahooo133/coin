@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mining</title>
+    <link rel="stylesheet" href="test.css"> />
+</head>
+<body>
+    <div class="coin-container">
+        <img src="./timcoin.png" alt="Coin" class="coin-img">
+    </div>
+    
+    <div class="container">
+        <h1>Crypto Miner</h1>
+        
+        <div class="input-group">
+            <label for="blocks">Antal blocks att mina:</label>
+            <input type="number" id="blocks" placeholder="Enter amount of blocks to mine">
+        </div>
+
+        <button onclick="startMining()" id="mineButton">Starta Mining</button>
+
+        <div id="status" class="status-box info">
+            Status: Redo att börja mina
+        </div>
+
+        <div class="status-box">
+            <h3>Stats:</h3>
+            <p>Coins: <span id="coins">0.00</span></p>
+            <p>Nästa mining om: <span id="timer">Redo</span></p>
+        </div>
+    </div>
+
+    <script src="knapp.js"></script>
+</body>
+</html>
