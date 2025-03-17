@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html class="no-js" lang="sv">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>TIMCOIN</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./test.css" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:700|Poppins" rel="stylesheet" />
+  
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">
+            <img src="timcoin.png" alt="TIMCOIN Logo">
+            <span>Timcoin</span>
+        </div>
+        <div class="ham-menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Offscreen Menu -->
+    <div class="offscreen-menu">
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">COIN</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </div>
+
+    <!-- Huvudsektion -->
+    <main>
+        <section class="hero-section">
+            <img src="./black2.png" class="hero-bg" alt="Background">
+
+            
+            <div class="mining-section">
+              <div class="mine-coin">
+                <img src="timcoin.png" alt="" width="300" height="300">
+              </div>
+
+              <div class="mine-text">
+                <h1>Timcoin</h1>
+              </div>
+                
+                <div class="input-group">
+                    <label for="blocks">Antal blocks att mina:</label>
+                    <input type="number" id="blocks" placeholder="Ange antal blocks">
+                </div>
+
+                <button onclick="startMining()" id="mineButton">Starta Mining</button>
+
+                <div id="status" class="status-box info">
+                    Status: Redo att börja mina
+                </div>
+
+                <div class="status-box">
+                    <h3>Stats:</h3>
+                    <p>Coins: <span id="coins">0.00</span></p>
+                    <p>Nästa mining om: <span id="timer">Redo</span></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="knapp.js"></script>
+        // Här kommer alla JavaScript-funktioner
+
+</body>
+</html>
