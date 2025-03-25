@@ -12,12 +12,68 @@
 </head>
 
 <body>
-    <!-- Navigation -->
+
+   
     <nav>
         <div class="nav-brand">
             <img src="timcoin.png" alt="TIMCOIN Logo">
             <span>Timcoin</span>
         </div>
+        <div class="center">
+            <button id="show-login">Login</button>
+            <button id="show-signup">Sign Up</button>
+        </div>
+        
+        
+        <div class="popup" id="login-popup">
+            <div class="close-btn">&times;</div>
+            <div class="form">
+                <h2>Log in</h2>
+                <div class="form-element">
+                    <label for="login-email">Email</label>
+                    <input type="text" id="login-email" placeholder="Enter email">
+                </div>
+                <div class="form-element">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter password">
+                </div>
+                <div class="form-element">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Remember me</label>
+                </div>
+                <div class="form-element">
+                    <button>Sign in</button>
+                </div>
+                <div class="form-element">
+                    <a href="#">Forgot password?</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="popup" id="signup-popup">
+            <div class="close-btn">&times;</div>
+            <div class="form">
+                <h2>Sign Up</h2>
+                <div class="form-element">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" placeholder="Enter full name">
+                </div>
+                <div class="form-element">
+                    <label for="signup-email">Email</label>
+                    <input type="text" id="signup-email" placeholder="Enter email">
+                </div>
+                <div class="form-element">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Enter password">
+                </div>
+                
+                <div class="form-element">
+                    <button>Sign Up</button>
+                </div>
+            </div>
+        </div>
+        
         <div class="ham-menu" onclick="toggleMenu()">
             <span></span>
             <span></span>
@@ -25,7 +81,9 @@
         </div>
     </nav>
 
-    <!-- Offscreen Menu -->
+
+
+
     <div class="offscreen-menu">
         <ul>
             <li><a href="#">HOME</a></li>
@@ -34,10 +92,12 @@
         </ul>
     </div>
 
-    <!-- Huvudsektion -->
+
+
+    
     <main>
         <section class="hero-section">
-            <img src="./black2.png" class="hero-bg" alt="Background">
+            <img src="./back.png" class="hero-bg" alt="Background">
 
             
             <div class="mining-section">
@@ -70,8 +130,9 @@
     </main>
 
     <script src="script.js"></script>
-    <script src="knapp.js"></script>
-        // Här kommer alla JavaScript-funktioner
-
+    <script src="test.js"></script>
+  
+    <script src="popup.js"></script>
+       
 </body>
 </html>
