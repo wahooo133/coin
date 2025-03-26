@@ -86,5 +86,36 @@ app.MapPost("/cancelMining", async (HttpContext context) =>
     }
 });
 
+app.MapPost("/registerUser", async (HttpContext context) =>
+{
+    var requestBody = await new StreamReader(context.Request.Body).ReadToEndAsync();
+    var requestData = JsonSerializer.Deserialize<Dictionary<string, string>>(requestBody);
+
+    string? name, email, password;
+
+    if (requestData == null || 
+    !requestData.TryGetValue("fullName", out string? nameVal) ||
+    !requestData.TryGetValue("email", out string? emailVal) ||
+    !requestData.TryGetValue("password", out string? passwordVal))
+    {
+        context.Response.StatusCode = 400;
+        await context.Response.WriteAsync("Missing required fields");
+        return;
+    }
+
+    name = nameVal;
+    email = emailVal;
+    password = passwordVal;
+
+    var jsonResponse = JsonSerializer.Serialize(new
+    {
+        fullName = name,
+        email = email,
+        password = passwordVal
+    });
+
+    context.Response.ContentType = "application/json; charset=utf-8";
+    await context.Response.WriteAsync(jsonResponse);
+});
 // Ensure the server runs on port 5000
 app.Run("http://localhost:5000");

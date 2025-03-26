@@ -3,15 +3,15 @@
   "WorkspaceRootPath": "D:\\Quick Access\\Documents\\Coding Projects\\C#\\Timcoin\\coin\\project coin 2.0\\TimcoinFunctionality\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B6AA4C9D-0AB8-475A-BCBE-8F8017F01DFE}|TimcoinFunctionality.csproj|D:\\Quick Access\\Documents\\Coding Projects\\C#\\Timcoin\\coin\\project coin 2.0\\TimcoinFunctionality\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6AA4C9D-0AB8-475A-BCBE-8F8017F01DFE}|TimcoinFunctionality.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B6AA4C9D-0AB8-475A-BCBE-8F8017F01DFE}|TimcoinFunctionality.csproj|d:\\quick access\\documents\\coding projects\\c#\\timcoin\\coin\\project coin 2.0\\timcoinfunctionality\\miner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6AA4C9D-0AB8-475A-BCBE-8F8017F01DFE}|TimcoinFunctionality.csproj|solutionrelative:miner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6AA4C9D-0AB8-475A-BCBE-8F8017F01DFE}|TimcoinFunctionality.csproj|d:\\quick access\\documents\\coding projects\\c#\\timcoin\\coin\\project coin 2.0\\timcoinfunctionality\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6AA4C9D-0AB8-475A-BCBE-8F8017F01DFE}|TimcoinFunctionality.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6AA4C9D-0AB8-475A-BCBE-8F8017F01DFE}|TimcoinFunctionality.csproj|d:\\quick access\\documents\\coding projects\\c#\\timcoin\\coin\\project coin 2.0\\timcoinfunctionality\\faucet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B6AA4C9D-0AB8-475A-BCBE-8F8017F01DFE}|TimcoinFunctionality.csproj|D:\\Quick Access\\Documents\\Coding Projects\\C#\\Timcoin\\coin\\project coin 2.0\\TimcoinFunctionality\\faucet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6AA4C9D-0AB8-475A-BCBE-8F8017F01DFE}|TimcoinFunctionality.csproj|solutionrelative:faucet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -32,14 +32,14 @@
               "RelativeDocumentMoniker": "Faucet.cs",
               "ToolTip": "D:\\Quick Access\\Documents\\Coding Projects\\C#\\Timcoin\\coin\\project coin 2.0\\TimcoinFunctionality\\Faucet.cs",
               "RelativeToolTip": "Faucet.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAIAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAA6wAIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-16T17:19:18.512Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Miner.cs",
               "DocumentMoniker": "D:\\Quick Access\\Documents\\Coding Projects\\C#\\Timcoin\\coin\\project coin 2.0\\TimcoinFunctionality\\Miner.cs",
               "RelativeDocumentMoniker": "Miner.cs",
@@ -52,13 +52,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Quick Access\\Documents\\Coding Projects\\C#\\Timcoin\\coin\\project coin 2.0\\TimcoinFunctionality\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\Quick Access\\Documents\\Coding Projects\\C#\\Timcoin\\coin\\project coin 2.0\\TimcoinFunctionality\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAADoAAAAAAAAAAAAEwEoAAAAAAAAA",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAEwFoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-16T16:35:59.797Z",
               "EditorCaption": ""

@@ -169,6 +169,27 @@ app.get("/api/startMining", async (req, res) => {
     }
 });
 
+app.get("/api/registerUser", async (req, res) => {
+    try {
+        const response = await fetch("http://localhost:5000/registerUser", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ fullName, email, password })
+        });
+
+        const responseText = await response.text();
+        console.log("C# response status:", response.status);
+        console.log("C# response ok?:", response.ok);
+        console.log("C# response body:", responseText);
+
+        res.status(200).send(responseText);
+
+    } catch (error) {
+        console.error("Error contacting C# API:", error);
+        res.status(500).json({ error: "Failed to connect to C# backend" });
+    }
+});
+
 
 // Start the server
 const PORT = 5000;

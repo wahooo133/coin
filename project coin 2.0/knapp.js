@@ -119,3 +119,21 @@ function updateStatus(message, type = 'info') {
     status.className = `status-box ${type}`;
     status.innerHTML = `Status: ${message}`;
 }
+
+function registerUser()
+{
+    const fullName = document.getElementById('signup-name');
+    const email = document.getElementById('signup-email');
+    const password = document.getElementById('signup-password');
+
+    let response = fetch("http://localhost:5000/registerUser", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(
+            { 
+                fullName: fullName.value, 
+                email: email.value, 
+                password: password.value 
+            })
+    });
+}

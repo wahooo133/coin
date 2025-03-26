@@ -2,7 +2,7 @@ HUR MAN STARTAR
 1. Öppna terminal project.coin 2.0 mappen.
 2. Öppna terminal i TimcoinFunctionality mappen.
 3. Skriv "dotnet run" i TimcoinFunctionality terminal
-4. Skriv "Node server.js i project.coin 2.0 terminal
+4. Skriv "Node server.js" i project.coin 2.0 terminal
 5. Gå till rätt html fil och klicka på "Go Live"
 
 HUR MAN AVSLUTAR
