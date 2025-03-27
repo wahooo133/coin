@@ -15,6 +15,7 @@ connection.start().then(() => {
 
 // ✅ Show live mining progress
 connection.on("UpdateMiningStatus", (message) => {
+
     updateStatus(message, 'info');
 });
 
@@ -120,36 +121,4 @@ function updateStatus(message, type = 'info') {
     status.innerHTML = `Status: ${message}`;
 }
 
-function registerUser()
-{
-    const fullName = document.getElementById('signup-name');
-    const email = document.getElementById('signup-email');
-    const password = document.getElementById('signup-password');
 
-    let response = fetch("http://localhost:5000/registerUser", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(
-            { 
-                fullName: fullName.value, 
-                email: email.value, 
-                password: password.value 
-            })
-    });
-}
-
-function loginUser()
-{
-    const email = document.getElementById('login-email');
-    const password = document.getElementById('login-password');
-
-    let response = fetch("http://localhost:5000/loginUser", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(
-            { 
-                email: email.value, 
-                password: password.value 
-            })
-    });
-}
