@@ -13,7 +13,7 @@ body {
     height: 100vh;
 }
 
-
+/* ===== Center Button ===== */
 .center {
     position: absolute;
     top: 50%;
@@ -128,6 +128,28 @@ body {
     font-weight: 600;
 }
 
+#user-status {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+#logged-in-text {
+    color: white;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+#logout-btn {
+    padding: 8px 15px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 /* ===== Navigation Bar ===== */
 nav {
@@ -213,35 +235,6 @@ nav {
 .error { background: #e74c3c; }
 .info { background: #3498db; }
 
-/* ===== Hamburger Menu ===== */
-.ham-menu {
-    cursor: pointer;
-    z-index: 1100;
-}
-
-.ham-menu span {
-    display: block;
-    width: 35px;
-    height: 3px;
-    background: white;
-    margin: 6px 0;
-    transition: 0.3s;
-}
-
-.offscreen-menu {
-    position: fixed;
-    top: 0;
-    right: -250px;
-    width: 250px;
-    height: 100vh;
-    background: #004080;
-    transition: 0.3s;
-    padding: 80px 20px;
-}
-
-.offscreen-menu.active {
-    right: 0;
-}
 
 /* ===== Coin and Text Positioning ===== */
 .mine-coin {
