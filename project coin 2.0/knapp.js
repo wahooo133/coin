@@ -137,3 +137,19 @@ function registerUser()
             })
     });
 }
+
+function loginUser()
+{
+    const email = document.getElementById('login-email');
+    const password = document.getElementById('login-password');
+
+    let response = fetch("http://localhost:5000/loginUser", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(
+            { 
+                email: email.value, 
+                password: password.value 
+            })
+    });
+}

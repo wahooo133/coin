@@ -111,11 +111,42 @@ app.MapPost("/registerUser", async (HttpContext context) =>
     {
         fullName = name,
         email = email,
-        password = passwordVal
+        password = password
     });
 
     context.Response.ContentType = "application/json; charset=utf-8";
     await context.Response.WriteAsync(jsonResponse);
+});
+
+app.MapPost("/loginUser", async (HttpContext context) =>
+{
+    var requestBody = await new StreamReader(context.Request.Body).ReadToEndAsync();
+    var requestData = JsonSerializer.Deserialize<Dictionary<string, string>>(requestBody);
+
+    string? email, password;
+
+    if (requestData == null ||
+    !requestData.TryGetValue("email", out string? emailVal) ||
+    !requestData.TryGetValue("password", out string? passwordVal))
+    {
+        context.Response.StatusCode = 400;
+        await context.Response.WriteAsync("Missing required fields");
+        return;
+    }
+
+    email = emailVal;
+    password = passwordVal;
+
+    var jsonResponse = JsonSerializer.Serialize(new
+    {
+        email = email,
+        password = password
+    });
+
+    context.Response.ContentType = "application/json; charset=utf-8";
+    await context.Response.WriteAsync(jsonResponse);
+
+    Console.WriteLine("Email: " + email + "\nPassword: " + password);
 });
 // Ensure the server runs on port 5000
 app.Run("http://localhost:5000");

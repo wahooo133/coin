@@ -170,6 +170,7 @@ app.get("/api/startMining", async (req, res) => {
 });
 
 app.get("/api/registerUser", async (req, res) => {
+    console.log("is this even getting called?");
     try {
         const response = await fetch("http://localhost:5000/registerUser", {
             method: "POST",
