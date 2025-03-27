@@ -42,7 +42,7 @@
                     <label for="remember-me">Remember me</label>
                 </div>
                 <div class="form-element">
-                    <button onclick="loginUser()" id="signinButton">Sign in</button>
+                    <button>Sign in</button>
                 </div>
                 <div class="form-element">
                     <a href="#">Forgot password?</a>
@@ -69,9 +69,16 @@
                 </div>
                 
                 <div class="form-element">
-                    <button onclick="registerUser()" id="signupButton">Sign Up</button>
+                    <button>Sign Up</button>
                 </div>
             </div>
+        </div>
+
+        <div id="user-status">
+            <span id="logged-in-text" style="display: none;">
+                Logged in as <span id="username-display"></span>
+            </span>
+            <button id="logout-btn" style="display: none;">Logout</button>
         </div>
         
         <div class="ham-menu" onclick="toggleMenu()">
@@ -84,13 +91,6 @@
 
 
 
-    <div class="offscreen-menu">
-        <ul>
-            <li><a href="#">HOME</a></li>
-            <li><a href="#">COIN</a></li>
-            <li><a href="#">Login</a></li>
-        </ul>
-    </div>
 
 
 
@@ -133,9 +133,6 @@
     <script src="test.js"></script>
   
     <script src="popup.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
-    <script src="knapp.js"></script>
        
 </body>
 </html>
