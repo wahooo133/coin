@@ -1,124 +1,75 @@
 let isMining = false;
 
-// ✅ Connect to SignalR
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("http://localhost:5000/miningHub", {
-    skipNegotiation: true,
-    transport: signalR.HttpTransportType.WebSockets
-    })
-    .configureLogging(signalR.LogLevel.Information)
-    .build();
+async function toggleMining() {
+    const userId = localStorage.getItem('userId');
+    if (!userId) return alert('Please login first');
 
-connection.start().then(() => {
-    console.log("Connected to mining server...");
-}).catch(err => console.error(err));
-
-// ✅ Show live mining progress
-connection.on("UpdateMiningStatus", (message) => {
-
-    updateStatus(message, 'info');
-});
-
-// ✅ Show mining result when finished
-connection.on("MiningCanceled", (message) => {
-    updateStatus(message, 'warning');
-    isMining = false; // ✅ Reset state when canceled
-});
-
-// ✅ Show mining result when finished
-connection.on("MiningCompleted", (message) => {
-    updateStatus(message, 'success');
-});
-
-async function cancelMining()
-{
-    try {
-        let cancelResponse = await fetch("http://localhost:5000/cancelMining", { method: "POST" });
-
-        if (cancelResponse.ok) {
-            let cancelData = await cancelResponse.json();
-            updateStatus(cancelData.message, 'info');
-        } else {
-            let errorData = await cancelResponse.json();
-            updateStatus(errorData.error, 'error');
-        }
-    } catch (error) {
-        console.error("Error canceling mining:", error);
-        updateStatus("Error canceling mining.", 'error');
+    const blocks = document.getElementById('blocks').value || 1;
+    
+    if (!isMining) {
+        await startMining(userId, blocks);
+    } else {
+        await stopMining(userId);
     }
 }
 
-
-async function startMining()
-{
-    if (isMining) {
-        updateStatus("Stopping current mining session...", 'warning');
-        
-        // ✅ Send a request to cancel the current mining session
-        try {
-            let cancelResponse = await fetch("http://localhost:5000/cancelMining", { method: "POST" });
-
-            if (cancelResponse.ok) {
-                let cancelData = await cancelResponse.json();
-                updateStatus(cancelData.message, 'info');
-            } else {
-                let errorData = await cancelResponse.json();
-                updateStatus(errorData.error, 'error');
-            }
-        } catch (error) {
-            console.error("Error canceling mining:", error);
-            updateStatus("Error canceling mining.", 'error');
-        }
-
-        isMining = false;
-        return;
-    }
-
-
-    const blocksInput = document.getElementById('blocks');
-    const blocksStr = blocksInput.value.trim(); // Get input as a string
-
-    if (!blocksStr || !/^\d+$/.test(blocksStr)) {
-        updateStatus("Number of blocks cannot be none or is an invalid input! Field can ONLY contain positive digits!", 'error');
-        return;
-    }
-
-    const blocks = BigInt(blocksStr);
-
-    if (blocks == 0) {
-        updateStatus("Number of blocks cannot be 0!", 'error');
-        return;
-    } 
-    else if (blocks > 1000000000){
-        updateStatus("Number of blocks cannot be higher than 1,000,000,000!", 'error')
-        return;
-    }
-        
+async function startMining(userId, blocks) {
     try {
-        updateStatus("Mining started...", 'info');
         isMining = true;
-        // Send `blocks` as a query parameter
-        let response = await fetch("http://localhost:5000/startMining", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ blocks: blocks.toString() }) // Send BigInt as string
+        updateMiningButton(true);
+        
+        const response = await fetch('http://localhost:5000/api/mining-toggle', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId, action: 'start' })
         });
-        let data = await response.json(); // Parse JSON response
-
-        console.log("Mining Result:", data.textResult);
-        updateStatus(data.textResult, 'info');
+        
+        if (!response.ok) throw new Error('Failed to start mining');
+        
+        document.getElementById('status').className = 'status-box info';
+        document.getElementById('status').textContent = 'Mining started...';
+        
+    } catch (err) {
+        console.error("Mining error:", err);
         isMining = false;
-    } catch (error) {
-        console.error("Error fetching mining result:", error);
-        updateStatus("Error connecting to mining service.", 'error');
-        isMining = false;
+        updateMiningButton(false);
+        document.getElementById('status').className = 'status-box error';
+        document.getElementById('status').textContent = err.message;
     }
 }
 
-function updateStatus(message, type = 'info') {
-    const status = document.getElementById('status');
-    status.className = `status-box ${type}`;
-    status.innerHTML = `Status: ${message}`;
+async function stopMining(userId) {
+    try {
+        const response = await fetch('http://localhost:5000/api/mining-toggle', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId, action: 'stop' })
+        });
+        
+        if (!response.ok) throw new Error('Failed to stop mining');
+        
+        isMining = false;
+        updateMiningButton(false);
+        document.getElementById('status').className = 'status-box success';
+        document.getElementById('status').textContent = 'Mining stopped';
+        
+    } catch (err) {
+        console.error("Stop mining error:", err);
+    }
 }
 
+function updateMiningButton(mining) {
+    const btn = document.getElementById('mineButton');
+    btn.textContent = mining ? 'Stop Mining' : 'Start Mining';
+}
 
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('mineButton').addEventListener('click', toggleMining);
+    
+    // Block input validation
+    document.getElementById('blocks').addEventListener('input', (e) => {
+        let value = parseInt(e.target.value) || 0;
+        if (value > 1000) e.target.value = 1000;
+    });
+});

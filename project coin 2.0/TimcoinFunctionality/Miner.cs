@@ -57,7 +57,7 @@ public class Miner
 
             try
             {
-                await Task.Delay(100, cancellationToken); // Allow cancellation to be detected
+                await Task.Delay(1, cancellationToken); // Allow cancellation to be detected
             }
             catch (TaskCanceledException)
             {

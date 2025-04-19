@@ -24,3 +24,32 @@ D:\Quick Access\Documents\Coding Projects\C#\Timcoin\coin\project coin 2.0\Timco
 D:\Quick Access\Documents\Coding Projects\C#\Timcoin\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\TimcoinFunctionality.pdb
 D:\Quick Access\Documents\Coding Projects\C#\Timcoin\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\TimcoinFunctionality.genruntimeconfig.cache
 D:\Quick Access\Documents\Coding Projects\C#\Timcoin\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\ref\TimcoinFunctionality.dll
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\bin\Debug\net8.0\appsettings.json
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\bin\Debug\net8.0\TimcoinFunctionality.staticwebassets.endpoints.json
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\bin\Debug\net8.0\TimcoinFunctionality.exe
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\bin\Debug\net8.0\TimcoinFunctionality.deps.json
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\bin\Debug\net8.0\TimcoinFunctionality.runtimeconfig.json
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\bin\Debug\net8.0\TimcoinFunctionality.dll
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\bin\Debug\net8.0\TimcoinFunctionality.pdb
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\TimcoinFunctionality.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\TimcoinFunctionality.AssemblyInfoInputs.cache
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\TimcoinFunctionality.AssemblyInfo.cs
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\TimcoinFunctionality.csproj.CoreCompileInputs.cache
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\TimcoinFunctionality.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\TimcoinFunctionality.sourcelink.json
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\scopedcss\bundle\TimcoinFunctionality.styles.css
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\staticwebassets\msbuild.TimcoinFunctionality.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\staticwebassets\msbuild.TimcoinFunctionality.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\staticwebassets\msbuild.build.TimcoinFunctionality.props
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.TimcoinFunctionality.props
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.TimcoinFunctionality.props
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\TimcoinFunctionality.dll
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\refint\TimcoinFunctionality.dll
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\TimcoinFunctionality.pdb
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\TimcoinFunctionality.genruntimeconfig.cache
+C:\Users\Rickard Hassiakis\Documents\GitHub\coin\project coin 2.0\TimcoinFunctionality\obj\Debug\net8.0\ref\TimcoinFunctionality.dll

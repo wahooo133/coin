@@ -1,253 +1,420 @@
-
-* {
+/* ===== BASE STYLES ===== */
+:root {
+    --primary: #05f019;
+    --primary-dark: #04d817;
+    --secondary: #0080ff;
+    --danger: #ff4444;
+    --dark: #064e3b;
+    --darker: #022c22;
+    --light: #f0fdf4;
+  }
+  
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Raleway", sans-serif;
-}
-
-body {
-    background-color: #0a0a0a;
-    background: linear-gradient(to right, #064e3b, #000000);
+    font-family: 'Raleway', sans-serif;
+  }
+  
+  html, body {
+    height: 100%;
     overflow-x: hidden;
-    height: 100vh;
-}
-
-/* ===== Center Button ===== */
-.center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.center button {
-    padding: 10px 20px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #222;
-    background: #05f019;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin: 10px;
-}
-
-.popup {
-    position: fixed;
-    top: -150%;
-    left: 50%;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.25);
-    width: 380px;
-    padding: 50px 30px;
-    background: linear-gradient(to right, #064e3b, #0080FF);
-    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-    transition: top 0ms ease-in-out 200ms, 
-                opacity 200ms ease-in-out 0ms,
-                transform 200ms ease-in-out 0ms;
-}
-
-.popup.active {
-    top: 50%;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.popup .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    background: #888;
-    text-align: center;
-    line-height: 20px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-weight: bold;
+    background: linear-gradient(135deg, var(--dark) 0%, #000000 100%);
     color: white;
-}
-
-.popup .form {
-    text-align: center;
-}
-
-.popup .form h2 {
-    color: #222;
-    margin-bottom: 20px;
-    font-size: 25px;
-}
-
-.popup .form .form-element {
-    margin: 15px 0;
-}
-
-.popup .form .form-element label {
-    font-size: 14px;
-    color: #222;
-}
-
-.popup .form .form-element input {
-    margin-top: 5px;
-    display: block;
-    width: 100%;
-    padding: 10px;
-    outline: none;
-    border: 1px solid #aaa;
-    border-radius: 5px;
-}
-
-.popup .form .form-element input[type="checkbox"] {
-    display: inline-block;
-    width: auto;
-    margin-right: 5px;
-}
-
-.popup .form .form-element button {
-    width: 100%;
-    height: 40px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    background: #064e3b;
-    color: #0f0f0f;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.popup .form .form-element a {
-    display: block;
-    text-align: right;
-    font-size: 15px;
-    color: #064e3b;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-#user-status {
-    position: absolute;
-    top: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-}
-
-#logged-in-text {
-    color: white;
-    font-weight: 600;
-    margin-right: 10px;
-}
-
-#logout-btn {
-    padding: 8px 15px;
-    background: #ff4444;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* ===== Navigation Bar ===== */
-nav {
+    line-height: 1.6;
+  }
+  
+  /* ===== NAVIGATION ===== */
+  nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    background-color: #0080FF;
+    padding: 1rem 2rem;
+    background-color: rgba(0, 128, 255, 0.9);
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
-}
-
-.nav-brand {
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nav-brand {
     display: flex;
     align-items: center;
-    gap: 20px;
-}
-
-.nav-brand img {
+    gap: 1rem;
+  }
+  
+  .nav-brand img {
     height: 50px;
     width: auto;
-}
-
-/* ===== Hero Section ===== */
-.hero-section {
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+  }
+  
+  .nav-brand span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* ===== AUTH BUTTONS ===== */
+  #auth-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  #auth-buttons button {
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  #show-login {
+    background-color: var(--primary);
+    color: #222;
+  }
+  
+  #show-signup {
+    background-color: white;
+    color: #222;
+  }
+  
+  #auth-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* ===== USER STATUS ===== */
+  #user-status {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  #logged-in-text {
+    font-weight: 600;
+  }
+  
+  #logout-btn {
+    padding: 0.5rem 1.5rem;
+    background-color: var(--danger);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  #logout-btn:hover {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* ===== POPUP FORMS ===== */
+  .popup {
+    position: fixed;
+    top: -150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .popup.active {
+    top: 50%;
+    opacity: 1;
+  }
+  
+  .popup .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    background: #888;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .popup .close-btn:hover {
+    background: #666;
+    transform: rotate(90deg);
+  }
+  
+  .popup .form h2 {
+    color: white;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .popup .form-element {
+    margin-bottom: 1.5rem;
+  }
+  
+  .popup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-weight: 500;
+  }
+  
+  .popup input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .popup input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .popup button[type="submit"] {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--primary);
+    color: #222;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .popup button[type="submit"]:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* ===== HERO SECTION ===== */
+  .hero-section {
     position: relative;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-}
-
-.hero-bg {
+    padding-top: 80px;
+  }
+  
+  .hero-bg {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: -1;
-}
-
-.main-title {
-    font-size: 6rem;
-    text-align: center;
-    margin-top: 80px;
-}
-
-/* ===== Mining Section ===== */
-.mining-section {
+    opacity: 0.7;
+  }
+  
+  /* ===== MINING SECTION ===== */
+  .mining-section {
     position: relative;
+    width: 90%;
     max-width: 600px;
-    margin: 50px auto;
-    padding: 30px;
+    margin: 0 auto;
+    padding: 2rem;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     backdrop-filter: blur(10px);
-}
-
-.input-group {
-    margin-bottom: 25px;
-}
-
-.input-group input {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .mine-coin {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -150px;
+    animation: float 3s ease-in-out infinite;
+    z-index: 10;
+  }
+  
+  .mine-coin img {
+    width: 150px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(5, 240, 25, 0.5));
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .mine-coin img:hover {
+    transform: scale(1.1) rotate(10deg);
+    filter: drop-shadow(0 0 15px gold);
+  }
+  
+  .mine-text h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    text-shadow: 0 0 10px rgba(5, 240, 25, 0.7);
+  }
+  
+  .input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-weight: 500;
+  }
+  
+  .input-group input {
     width: 100%;
-    padding: 12px;
+    padding: 0.8rem 1rem;
     background: rgba(0, 0, 0, 0.5);
-    border: 2px solid #4CAF50;
+    border: 2px solid var(--primary);
     border-radius: 8px;
     color: white;
-}
-
-/* ===== Status Messages ===== */
-.status-box {
-    padding: 15px;
+    font-size: 1rem;
+  }
+  
+  #mineButton {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #222;
+    border: none;
     border-radius: 8px;
-    margin: 15px 0;
-}
-
-.success { background: #2ecc71; }
-.error { background: #e74c3c; }
-.info { background: #3498db; }
-
-
-/* ===== Coin and Text Positioning ===== */
-.mine-coin {
-    position: absolute;
-    left: 150%;
-}
-
-.mine-text {
-    position: absolute;
-    right: 600px;
-    bottom: 200px;
-}
-
-h1 {
-    font-size: 80px;
-}
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1rem 0;
+    box-shadow: 0 4px 15px rgba(5, 240, 25, 0.3);
+  }
+  
+  #mineButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(5, 240, 25, 0.4);
+  }
+  
+  #mineButton:active {
+    transform: translateY(1px);
+  }
+  
+  #mineButton:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+  
+  /* ===== STATUS BOXES ===== */
+  .status-box {
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    color: white;
+    text-align: center;
+  }
+  
+  .info {
+    background: rgba(52, 152, 219, 0.3);
+    border: 1px solid #3498db;
+  }
+  
+  .success {
+    background: rgba(46, 204, 113, 0.3);
+    border: 1px solid #2ecc71;
+  }
+  
+  .warning {
+    background: rgba(241, 196, 15, 0.3);
+    border: 1px solid #f1c40f;
+  }
+  
+  .error {
+    background: rgba(231, 76, 60, 0.3);
+    border: 1px solid #e74c3c;
+  }
+  
+  /* ===== ANIMATIONS ===== */
+  @keyframes float {
+    0% { transform: translateX(-50%) translateY(0px); }
+    50% { transform: translateX(-50%) translateY(-20px); }
+    100% { transform: translateX(-50%) translateY(0px); }
+  }
+  
+  /* ===== RESPONSIVE DESIGN ===== */
+  @media (max-width: 768px) {
+    nav {
+      padding: 0.8rem 1rem;
+    }
+    
+    .nav-brand span {
+      font-size: 1.2rem;
+    }
+    
+    .mine-text h1 {
+      font-size: 2rem;
+    }
+    
+    .mine-coin {
+      top: -100px;
+    }
+    
+    .mine-coin img {
+      width: 100px;
+    }
+    
+    .popup {
+      width: 95%;
+      padding: 1.5rem;
+    }
+    
+    #mineButton {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #auth-buttons {
+      gap: 0.5rem;
+    }
+    
+    #auth-buttons button, #logout-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .hero-section {
+      padding-top: 70px;
+    }
+    
+    .mining-section {
+      padding: 1.5rem;
+    }
+  }

@@ -1,141 +1,108 @@
 <!DOCTYPE html>
-<html class="no-js" lang="sv">
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TIMCOIN</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="./test.css" />
-    <link href="https://fonts.googleapis.com/css?family=Oswald:700|Poppins" rel="stylesheet" />
-  
+    <link rel="stylesheet" href="test.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xmlrpc@1.3.2/lib/xmlrpc.js"></script>
 </head>
-
 <body>
-
-   
     <nav>
         <div class="nav-brand">
             <img src="timcoin.png" alt="TIMCOIN Logo">
             <span>Timcoin</span>
         </div>
-        <div class="center">
+        <div id="auth-buttons">
             <button id="show-login">Login</button>
             <button id="show-signup">Sign Up</button>
         </div>
-        
-        
-        <div class="popup" id="login-popup">
-            <div class="close-btn">&times;</div>
-            <div class="form">
-                <h2>Log in</h2>
-                <div class="form-element">
-                    <label for="login-email">Email</label>
-                    <input type="text" id="login-email" placeholder="Enter email">
-                </div>
-                <div class="form-element">
-                    <label for="login-password">Password</label>
-                    <input type="password" id="login-password" placeholder="Enter password">
-                </div>
-                <div class="form-element">
-                    <input type="checkbox" id="remember-me">
-                    <label for="remember-me">Remember me</label>
-                </div>
-                <div class="form-element">
-                    <button>Sign in</button>
-                </div>
-                <div class="form-element">
-                    <a href="#">Forgot password?</a>
-                </div>
-            </div>
-        </div>
-        
-        
-        <div class="popup" id="signup-popup">
-            <div class="close-btn">&times;</div>
-            <div class="form">
-                <h2>Sign Up</h2>
-                <div class="form-element">
-                    <label for="signup-name">Full Name</label>
-                    <input type="text" id="signup-name" placeholder="Enter full name">
-                </div>
-                <div class="form-element">
-                    <label for="signup-email">Email</label>
-                    <input type="text" id="signup-email" placeholder="Enter email">
-                </div>
-                <div class="form-element">
-                    <label for="signup-password">Password</label>
-                    <input type="password" id="signup-password" placeholder="Enter password">
-                </div>
-                
-                <div class="form-element">
-                    <button>Sign Up</button>
-                </div>
-            </div>
-        </div>
-
         <div id="user-status">
-            <span id="logged-in-text" style="display: none;">
-                Logged in as <span id="username-display"></span>
-            </span>
-            <button id="logout-btn" style="display: none;">Logout</button>
-        </div>
-        
-        <div class="ham-menu" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span id="logged-in-text">Logged in as <span id="username-display"></span></span>
+            <button id="logout-btn">Logout</button>
         </div>
     </nav>
 
-
-
-
-
-
-
-    
     <main>
         <section class="hero-section">
             <img src="./back.png" class="hero-bg" alt="Background">
-
-            
             <div class="mining-section">
-              <div class="mine-coin">
-                <img src="timcoin.png" alt="" width="300" height="300">
-              </div>
-
-              <div class="mine-text">
-                <h1>Timcoin</h1>
-              </div>
+                <div class="mine-coin">
+                    <img src="timcoin.png" alt="Timcoin" width="300" height="300">
+                </div>
+                <div class="mine-text">
+                    <h1>Timcoin</h1>
+                </div>
+                
+                <div id="mining-status" class="status-box info">
+                    Mining Status: <span id="mining-status-text">Checking...</span>
+                </div>
                 
                 <div class="input-group">
-                    <label for="blocks">Antal blocks att mina:</label>
-                    <input type="number" id="blocks" placeholder="Ange antal blocks">
+                    <label for="blocks">Blocks to mine (max 1000):</label>
+                    <input type="number" id="blocks" placeholder="Enter number of blocks" min="1" max="1000">
                 </div>
-
-                <button onclick="startMining()" id="mineButton">Starta Mining</button>
-
+                
+                <button id="mineButton">Start Mining</button>
+                
                 <div id="status" class="status-box info">
-                    Status: Redo att börja mina
-                </div>
-
-                <div class="status-box">
-                    <h3>Stats:</h3>
-                    <p>Coins: <span id="coins">0.00</span></p>
-                    <p>Nästa mining om: <span id="timer">Redo</span></p>
+                    Status: Ready to mine
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Popup Forms -->
+    <div class="popup" id="login-popup">
+        <div class="close-btn">&times;</div>
+        <div class="form">
+            <h2>Login</h2>
+            <div class="form-element">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" placeholder="Enter email">
+            </div>
+            <div class="form-element">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" placeholder="Enter password">
+            </div>
+            <div class="form-element">
+                <button id="login-btn">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" id="signup-popup">
+        <div class="close-btn">&times;</div>
+        <div class="form">
+            <h2>Sign Up</h2>
+            <div class="form-element">
+                <label for="signup-username">Username</label>
+                <input type="text" id="signup-username" placeholder="Enter username">
+            </div>
+            <div class="form-element">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" placeholder="Enter email">
+            </div>
+            <div class="form-element">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" placeholder="Enter password">
+            </div>
+            <div class="form-element">
+                <button onclick="registerUser()" id="signup-btn">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
-    <script src="test.js"></script>
-  
+    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
-  
+
     <script src="popup.js"></script>
     <script src="knapp.js"></script>
-       
 </body>
 </html>
