@@ -1,81 +1,35 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
-    const showLoginBtn = document.querySelector("#show-login");
-    const showSignupBtn = document.querySelector("#show-signup");
-    const loginBtn = document.querySelector("#login-btn");
-    const signupBtn = document.querySelector("#signup-btn");
-    const logoutBtn = document.querySelector("#logout-btn");
-
-    // Event Listeners
-    if (showLoginBtn) showLoginBtn.addEventListener("click", showLoginPopup);
-    if (showSignupBtn) showSignupBtn.addEventListener("click", showSignupPopup);
-    if (loginBtn) loginBtn.addEventListener("click", handleLogin);
-    if (signupBtn) signupBtn.addEventListener("click", handleSignup);
-    if (logoutBtn) logoutBtn.addEventListener("click", handleLogout);
-
-    // Close buttons
-    document.querySelectorAll(".popup .close-btn").forEach(btn => {
-        btn.addEventListener("click", function() {
-            this.closest(".popup").classList.remove("active");
-        });
-    });
-
-    checkAuthStatus();
-});
-
-// UI Functions
-function showLoginPopup() {
-    document.querySelector("#login-popup").classList.add("active");
+// Check login state on load
+function checkAuthState() {
+    const username = localStorage.getItem('username');
+    if (username) updateUI(username);
 }
 
-function showSignupPopup() {
-    document.querySelector("#signup-popup").classList.add("active");
-}
-
-function updateUI(username) {
-    const authButtons = document.querySelector("#auth-buttons");
-    const userStatus = document.querySelector("#user-status");
-    const usernameDisplay = document.querySelector("#username-display");
-
+// Update UI based on login state
+function updateUI(username = null) {
+    const authButtons = document.getElementById('auth-buttons');
+    const userStatus = document.getElementById('user-status');
+    
     if (username) {
         authButtons.style.display = 'none';
         userStatus.style.display = 'flex';
-        usernameDisplay.textContent = username;
-        localStorage.setItem('username', username);
+        document.getElementById('username-display').textContent = username;
     } else {
         authButtons.style.display = 'flex';
         userStatus.style.display = 'none';
-        usernameDisplay.textContent = '';
-        localStorage.removeItem('username');
-        localStorage.removeItem('userId');
     }
 }
 
-// Auth Functions
-async function checkAuthStatus() {
-    try {
-        const username = localStorage.getItem('username');
-        if (username) {
-            updateUI(username);
-            return;
-        }
-        updateUI(null);
-    } catch (error) {
-        console.error('Auth check error:', error);
-        updateUI(null);
-    }
-}
-
+// Login handler
 async function handleLogin(e) {
     e.preventDefault();
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
+    const username = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value.trim();
 
     try {
         const response = await fetch('http://localhost:5000/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: email, password })
+            body: JSON.stringify({ username, password })
         });
 
         const data = await response.json();
@@ -85,19 +39,21 @@ async function handleLogin(e) {
         }
 
         localStorage.setItem('userId', data.user.id);
+        localStorage.setItem('username', data.user.username);
         updateUI(data.user.username);
         document.querySelector("#login-popup").classList.remove("active");
     } catch (error) {
-        alert(error.message || 'Login failed');
         console.error('Login error:', error);
+        alert(error.message);
     }
 }
 
+// Registration handler
 async function handleSignup(e) {
     e.preventDefault();
-    const username = document.getElementById('signup-username').value;
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
+    const username = document.getElementById('signup-username').value.trim();
+    const email = document.getElementById('signup-email').value.trim();
+    const password = document.getElementById('signup-password').value.trim();
 
     try {
         const response = await fetch('http://localhost:5000/api/register', {
@@ -115,13 +71,22 @@ async function handleSignup(e) {
         alert('Registration successful! Please login.');
         document.querySelector("#signup-popup").classList.remove("active");
     } catch (error) {
-        alert(error.message || 'Registration failed');
         console.error('Registration error:', error);
+        alert(error.message);
     }
 }
 
+// Logout handler
 function handleLogout() {
     localStorage.removeItem('userId');
     localStorage.removeItem('username');
-    updateUI(null);
+    updateUI();
 }
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    checkAuthState();
+    document.getElementById('login-btn').addEventListener('click', handleLogin);
+    document.getElementById('signup-btn').addEventListener('click', handleSignup);
+    document.getElementById('logout-btn').addEventListener('click', handleLogout);
+});

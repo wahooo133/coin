@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TimcoinFunctionality")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c688e20648a49b8c23b1d277437aa6fb896663d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+86657af108dec76f4e8bc5e6471960a89a205936")]
 [assembly: System.Reflection.AssemblyProductAttribute("TimcoinFunctionality")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TimcoinFunctionality")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
