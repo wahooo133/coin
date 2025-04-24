@@ -13,50 +13,67 @@ async function toggleMining() {
     }
 }
 
-async function startMining(userId, blocks) {
+async function startMining(blocks) {
     try {
-        isMining = true;
-        updateMiningButton(true);
-        
-        const response = await fetch('http://localhost:5000/api/mining-toggle', {
+        const response = await fetch('http://localhost:5002/startMining', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userId, action: 'start' })
+            body: JSON.stringify({ blocks: blocks.toString() })
         });
-        
-        if (!response.ok) throw new Error('Failed to start mining');
-        
+
+        const data = await response.json();
+
+        // 🛑 Om någon annan redan minar, visa alert
+        if (response.status === 403) {
+            alert(data.error || "Someone is already mining. Please wait.");
+            return;
+        }
+
+        if (!response.ok) {
+            throw new Error(data.error || 'Failed to start mining');
+        }
+
+        // ✅ Om mining lyckas
+        isMining = true;
+        updateMiningButton(true);
         document.getElementById('status').className = 'status-box info';
         document.getElementById('status').textContent = 'Mining started...';
-        
+
     } catch (err) {
         console.error("Mining error:", err);
         isMining = false;
         updateMiningButton(false);
-        document.getElementById('status').className = 'status-box error';
-        document.getElementById('status').textContent = err.message;
+        alert(err.message || 'Something went wrong.');
     }
 }
 
-async function stopMining(userId) {
+
+async function stopMining() {
     try {
-        const response = await fetch('http://localhost:5000/api/mining-toggle', {
+        const response = await fetch('http://localhost:5002/cancelMining', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userId, action: 'stop' })
+            headers: { 'Content-Type': 'application/json' }
         });
-        
-        if (!response.ok) throw new Error('Failed to stop mining');
-        
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || 'Failed to stop mining');
+        }
+
+        // ✅ Om mining stoppas
         isMining = false;
         updateMiningButton(false);
         document.getElementById('status').className = 'status-box success';
         document.getElementById('status').textContent = 'Mining stopped';
-        
+        alert('Mining has been stopped.');
+
     } catch (err) {
         console.error("Stop mining error:", err);
+        alert(err.message || 'Failed to stop mining');
     }
 }
+
 
 function updateMiningButton(mining) {
     const btn = document.getElementById('mineButton');

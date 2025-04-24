@@ -87,4 +87,4 @@ app.MapPost("/cancelMining", async (HttpContext context) =>
 });
 
 // Ensure the server runs on port 5000
-app.Run("http://localhost:5000");
+app.Run("http://localhost:5002");

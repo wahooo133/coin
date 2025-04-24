@@ -1,12 +1,11 @@
 {
   "Version": 1,
-  "Hash": "L95JELTdjABEX6NfO9EaQ+7XXrS8kjbUtIjFaKtDUU0=",
+  "Hash": "GuNMhNx9S1Q+lLBPZ6IKgYX4bmGUdLkS4Un3k3D4heI=",
   "Source": "TimcoinFunctionality",
   "BasePath": "_content/TimcoinFunctionality",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": []
 }
